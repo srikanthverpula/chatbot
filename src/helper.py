@@ -1,10 +1,6 @@
 import openai
 import json
-from secret_key import openai_api_key
 import endpoints
-openai.api_key = openai_api_key
-
-
 
 def get_answer(questions,chat_histories):
     messages = [{"role": "user", "content": questions},]
