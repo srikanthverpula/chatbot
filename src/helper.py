@@ -1,10 +1,8 @@
-from urllib.parse import uses_query
 import openai
 import json
 from secret_key import openai_api_key
 import endpoints
 openai.api_key = openai_api_key
-import dummy
 
 
 
