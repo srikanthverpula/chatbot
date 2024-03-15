@@ -12,7 +12,6 @@ import dummy
 
 load_dotenv()
 
-st.set_page_config(page_title="Sample ChatBot", page_icon="🤖")
 st.title("Sample ChatBot")
 if "chat_history" not in st.session_state:
     st.session_state.chat_history=[]
