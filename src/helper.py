@@ -5,7 +5,7 @@ import endpoints
 
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
-def get_answer(questions,chat_history):
+def get_answer(questions,chat_histories):
     messages = [{"role": "user", "content": questions},]
     functions = [
         {
