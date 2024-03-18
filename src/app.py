@@ -23,7 +23,7 @@ for message in st.session_state.chat_history:
         with st.chat_message("AI"):
             st.markdown(message.content)    
 
-user_query = st.chat_input("Your message")
+user_query = st.chat_input("Your message", key="user_input")
 chat_histories = st.session_state.chat_history
 
 if user_query is not None and user_query != "":
