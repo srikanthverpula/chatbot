@@ -17,19 +17,7 @@ st.title("Sample ChatBot")
 if "chat_history" not in st.session_state:
     st.session_state.chat_history=[]
 
-# def get_response(user_query,chat_history):
-#     template="""
-#     you are a helpful assistant. Answer the following questions considering the history of converstation :
-#     chat history:{chat_history}
-#     user question:{user_query}
-#     """
-#     prompt=ChatPromptTemplate.from_template(template)
-#     llm=ChatOpenAI()
-#     chain=prompt|llm|StrOutputParser()
-#     return chain.invoke({
-#        "chat_history" :chat_history,
-#        "user_query":user_query
-#     })
+
 for message in st.session_state.chat_history:
     if isinstance(message,HumanMessage):
         with st.chat_message("Human"):
@@ -41,8 +29,7 @@ for message in st.session_state.chat_history:
 user_query=st.chat_input("Your message")
 chat_histories=st.session_state.chat_history
 if user_query is not None and user_query !="":
-
-    st.session_state.chat_history.append(HumanMessage(content=user_query))
+    st.session_state.chat_history.append(HumanMessage(user_query))
     
     with st.chat_message("Human"):
         st.markdown(user_query)
