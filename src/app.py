@@ -14,31 +14,25 @@ load_dotenv()
 
 st.title("Sample ChatBot")
 if "chat_history" not in st.session_state:
-    st.session_state.chat_history = []
-
+    st.session_state.chat_history=[]
 for message in st.session_state.chat_history:
-    if isinstance(message, HumanMessage):
+    if isinstance(message,HumanMessage):
         with st.chat_message("Human"):
             st.markdown(message.content)
     else:     
-        with st.chat_message("AI"):
+       with st.chat_message("AI"):
             st.markdown(message.content)    
 
-# Generate a unique key for the chat input widget
-user_query = st.chat_input("Your message", key=f"user_input_{len(st.session_state.chat_history)}")
-chat_histories = st.session_state.chat_history
-
-if user_query is not None and user_query != "":
-    try:
-        new_message = HumanMessage(user_query)
-        st.session_state.chat_history.append(new_message)
-        
-        with st.chat_message("Human"):
-            st.markdown(user_query)
-        
-        ai_response = helper.get_answer(user_query, st.session_state.chat_history)
+user_query=st.chat_input("Your message")
+chat_histories=st.session_state.chat_history
+if user_query is not None and user_query !="":
+    st.session_state.chat_history.append(HumanMessage(user_query))
+    
+    with st.chat_message("Human"):
+        st.markdown(user_query)
+    with st.chat_message("AI"):
+        #ai_response=get_response(user_query,st.session_state.chat_history)
+        ai_response=helper.get_answer(user_query,st.session_state.chat_history)
+        #ai_response=dummy.get_response(user_query,st.session_state.chat_history)
         st.markdown(ai_response)    
         st.session_state.chat_history.append(AIMessage(ai_response))
-        
-    except Exception as e:
-        st.error(f"Error occurred: {str(e)}")
