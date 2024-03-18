@@ -37,7 +37,7 @@ if st.button("Send"):
                 st.markdown(user_query)
             
             # Get AI response
-            ai_response = helper.get_answer(user_query, st.session_state.chat_history)
+            ai_response = helper.get_answer(user_query, "")
             
             # Append AIMessage to chat history
             ai_message = AIMessage(ai_response)
