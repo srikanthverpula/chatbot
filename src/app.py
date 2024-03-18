@@ -9,11 +9,7 @@ from langchain_core.output_parsers import StrOutputParser
 import helper
 import dummy
 
-
-# Your imports here...
-
 load_dotenv()
-st.set_page_config(page_title="Sample ChatBot", page_icon="🤖")
 st.title("Sample ChatBot")
 
 if "chat_history" not in st.session_state:
