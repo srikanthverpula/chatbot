@@ -10,15 +10,28 @@ st.title("Sample ChatBot")
 # Initialize chat history list
 chat_history = []
 
-user_query = st.text_input("Your message")
-if st.button("Send"):
-    if user_query:
-        # Append user message to chat history
-        chat_history.append(HumanMessage(user_query))
+# Display chat history
+for message in chat_history:
+    if isinstance(message, HumanMessage):
+        st.write("Human:", message.content)
+    else:
+        st.write("AI:", message.content)
 
+# User input
+user_query = st.text_input("Your message")
+
+# If user submits a query
+if st.button("Send"):
+    # Append user message to chat history
+    if user_query:
+        chat_history.append(HumanMessage(str(user_query)))
+        
         # Get AI response
         ai_response = helper.get_answer(user_query, chat_history)
         chat_history.append(ai_response)
-
+        
         # Display AI response
-        st.write("AI:", ai_response.content if isinstance(ai_response, AIMessage) else ai_response)
+        if isinstance(ai_response, AIMessage):
+            st.write("AI:", ai_response.content)
+        else:
+            st.write("AI:", ai_response)
