@@ -27,7 +27,7 @@ user_query = st.chat_input("Your message", key="user_input")
 chat_histories = st.session_state.chat_history
 
 if user_query is not None and user_query != "":
-    st.session_state.chat_history.append(HumanMessage(user_query))
+    # st.session_state.chat_history.append(HumanMessage(user_query))
     with st.chat_message("Human"):
         st.markdown(user_query)
     try:
