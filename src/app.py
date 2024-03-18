@@ -1,30 +1,32 @@
 import streamlit as st
 from dotenv import load_dotenv
+from langchain_core.messages import HumanMessage,AIMessage
+from langchain_core.output_parsers import StrOutputParser
 import helper
 
 load_dotenv()
 
+st.set_page_config(page_title="Sample ChatBot", page_icon="🤖")
 st.title("Sample ChatBot")
+if "chat_history" not in st.session_state:
+    st.session_state.chat_history=[]
 
-# Initialize chat history list
-chat_history = []
+for message in st.session_state.chat_history:
+    if isinstance(message,HumanMessage):
+        with st.chat_message("Human"):
+            st.markdown(message.content)
+    else:     
+       with st.chat_message("AI"):
+            st.markdown(message.content)    
 
-# Display chat history
-for message in chat_history:
-    st.write("User:", message)
-
-# User input
-user_query = st.text_input("Your message")
-
-# If user submits a query
-if st.button("Send"):
-    # Append user message to chat history
-    if user_query:
-        chat_history.append(user_query)
-        
-        # Get AI response
-        ai_response = helper.get_answer(user_query, chat_history)
-        chat_history.append(ai_response)
-        
-        # Display AI response
-        st.write("AI:", ai_response)
+user_query=st.chat_input("Your message")
+chat_histories=st.session_state.chat_history
+if user_query is not None and user_query !="":
+    st.session_state.chat_history.append(HumanMessage(user_query))
+    
+    with st.chat_message("Human"):
+        st.markdown(user_query)
+    with st.chat_message("AI"):
+        ai_response=helper.get_answer(user_query,st.session_state.chat_history)
+        st.markdown(ai_response)    
+        st.session_state.chat_history.append(AIMessage(ai_response))
