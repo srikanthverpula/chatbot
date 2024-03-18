@@ -13,7 +13,6 @@ import dummy
 # Your imports here...
 
 load_dotenv()
-
 st.set_page_config(page_title="Sample ChatBot", page_icon="🤖")
 st.title("Sample ChatBot")
 
