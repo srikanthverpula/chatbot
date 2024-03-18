@@ -7,11 +7,12 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_openai import ChatOpenAI
 from langchain_core.output_parsers import StrOutputParser
 import helper
-import dummy
+
+
 
 load_dotenv()
-st.title("Sample ChatBot")
 
+st.title("Sample ChatBot")
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = []
 
@@ -23,7 +24,8 @@ for message in st.session_state.chat_history:
         with st.chat_message("AI"):
             st.markdown(message.content)    
 
-user_query = st.chat_input("Your message", key="user_input")
+# Generate a unique key for the chat input widget
+user_query = st.chat_input("Your message", key=f"user_input_{len(st.session_state.chat_history)}")
 chat_histories = st.session_state.chat_history
 
 if user_query is not None and user_query != "":
