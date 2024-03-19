@@ -8,7 +8,6 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_community.chat_models import ChatOpenAI
 from langchain_core.output_parsers import StrOutputParser
 import helper
-import dummy
 
 load_dotenv()
 openai.api_key = os.getenv("OPENAI_API_KEY")
@@ -41,7 +40,7 @@ if user_query is not None and user_query != "":
     except Exception as e:
         st.error(f"An error occurred: {e}")
 else:
-    st.session_state.chat_history.append(HumanMessage("practitioner details"))
+    st.session_state.chat_history.append(HumanMessage(content="test"))
     with st.chat_message("Human"):
         st.markdown("practitioner details")
     try:
