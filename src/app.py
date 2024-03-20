@@ -33,8 +33,9 @@ if user_query is not None and user_query !="":
     with st.chat_message("Human"):
         st.markdown(user_query)
     with st.chat_message("AI"):
-        #ai_response=get_response(user_query,st.session_state.chat_history)
-        ai_response=helper.get_answer(user_query,st.session_state.chat_history)
-        #ai_response=dummy.get_response(user_query,st.session_state.chat_history)
-        st.markdown(ai_response)    
-        #st.session_state.chat_history.append(AIMessage(ai_response))
+        with st.spinner("Thinking..."):
+            #ai_response=get_response(user_query,st.session_state.chat_history)
+            ai_response=helper.get_answer(user_query,st.session_state.chat_history)
+            #ai_response=dummy.get_response(user_query,st.session_state.chat_history)
+            st.markdown(ai_response)    
+            #st.session_state.chat_history.append(AIMessage(ai_response))
