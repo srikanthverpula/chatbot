@@ -141,21 +141,6 @@ def get_answer(questions,chat_histories):
         function_call="auto",
         model="gpt-3.5-turbo",
     )
-    # print(response)
-  
-    # if response.get("function_call"):
-    #     available_functions = {
-    #         "getuserprofileslist": db_helper.getuserprofileslist,
-    #         "get_practitioner_availabilities":db_helper.get_practioner_availabilities
-    #     }
-    #     function_name = response["function_call"]["name"]
-    #     function_args = json.loads(response["function_call"]["arguments"])
-    #     fuction_to_call = available_functions[function_name]
-    #     function_response = fuction_to_call(function_args)
-    #     return function_response
-
-    # else:
-    #     return response.choices[0].message.content
     if response.choices:
         choice = response.choices[0]
 
@@ -175,8 +160,11 @@ def get_answer(questions,chat_histories):
             else:
                 return "Error: Function '{}' not found".format(function_name)
         else:
-            # If no function call, return the content of the message
-            return response.choices[0].message.content
+           
+            #return dummy.get_response(questions,chat_histories)
+            # return response_message["content"]
+           
+            return f"Sorry for the inconvience.. As i am asistant i can only give response for valid questions"
     else:
         return "No response received"
          
