@@ -32,4 +32,4 @@ if user_query is not None and user_query !="":
             ai_response=helper.get_answer(user_query,st.session_state.chat_history)
             #ai_response=dummy.get_response(user_query,st.session_state.chat_history)
             st.markdown(ai_response)    
-            st.session_state.chat_history.append(ai_response)
+            st.session_state.chat_history.append(AIMessage(ai_response))
