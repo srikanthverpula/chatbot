@@ -15,12 +15,13 @@ for message in st.session_state.chat_history:
             st.markdown(message.content)
     else:     
        with st.chat_message("AI"):
-            st.markdown("AI")    
+            st.markdown(message)    
 
 user_query=st.chat_input("Your message")
 chat_histories=st.session_state.chat_history
 if user_query is not None and user_query !="":
-    st.session_state.chat_history.append("SRIKANTH")
+    chat_user_query=user_query
+    st.session_state.chat_history.append(chat_user_query)
     
     with st.chat_message("Human"):
         st.markdown(user_query)
@@ -30,4 +31,4 @@ if user_query is not None and user_query !="":
             ai_response=helper.get_answer(user_query,st.session_state.chat_history)
             #ai_response=dummy.get_response(user_query,st.session_state.chat_history)
             st.markdown(ai_response)    
-            st.session_state.chat_history.append("VERPULA")
+            st.session_state.chat_history.append(ai_response)
