@@ -2,6 +2,7 @@ import os
 from openai import OpenAI
 import json
 import endpoints
+import dummy
 
 def get_answer(questions,chat_histories):
     messages = [{"role": "user", "content": questions},]
@@ -161,10 +162,10 @@ def get_answer(questions,chat_histories):
                 return "Error: Function '{}' not found".format(function_name)
         else:
            
-            #return dummy.get_response(questions,chat_histories)
-            # return response_message["content"]
+           # return dummy.get_response(questions,chat_histories)
+            return response.choices[0].message.content
            
-            return f"Sorry for the inconvience.. As i am asistant i can only give response for valid questions"
+            #return f"Sorry for the inconvience.. As i am asistant i can only give response for valid questions"
     else:
         return "No response received"
          
