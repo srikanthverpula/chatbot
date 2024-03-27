@@ -19,7 +19,7 @@ def get_answer(questions,chat_histories):
             },
             {
             "name": "get_practitioner_availabilities",
-            "description": """Get practitioner availabilities based on the provided input parameters""",
+            "description": """Get practitioner details and their availability for booking an appointment based on the parameters given by the user""",
             "parameters": {
                 "type": "object",
                 "properties": {
